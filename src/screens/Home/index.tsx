@@ -26,6 +26,7 @@ const HomeScreen = ({ navigation }: PropsType) => {
     color: ThemeColor[index % ThemeColor.length],
   }));
 
+  console.log(newNotes);
   StatusBar.setBackgroundColor("#fff");
   StatusBar.setBarStyle("dark-content");
 
@@ -38,13 +39,13 @@ const HomeScreen = ({ navigation }: PropsType) => {
       <SafeAreaView />
       <Header>
         <SecondaryText>Simple Note</SecondaryText>
-        <Button onPress={() => navigation.navigate({ key: screenNames.Home })}>
+        <Button onPress={() => navigation.navigate(screenNames.Note, {})}>
           <PrimaryText>+</PrimaryText>
         </Button>
       </Header>
       {isLoading ? (
         <Text>...Loading</Text>
-      ) : !newNotes ? (
+      ) : newNotes.length == 0 ? (
         <Empty>
           <EmptyText>Nothing to Show</EmptyText>
         </Empty>
