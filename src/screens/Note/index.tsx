@@ -1,5 +1,4 @@
 import "react-native-get-random-values";
-import {} from "react-native";
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import {
@@ -70,65 +69,56 @@ const NoteScreen = ({ route, navigation }: PropsType) => {
       backAction
     );
 
-    StatusBar.setBackgroundColor(darkenColor);
-    StatusBar.setBarStyle("light-content");
-
     return () => {
       backHandler.remove();
     };
   }, [category, note, client]);
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <Wrapper color={lightenColor}>
-        <Header color={darkenColor}>
-          <Icon name="left" size={30} color="#fff" onPress={() => onSubmit()} />
-          <Icon
-            name="delete"
-            size={30}
-            color="#fff"
-            onPress={() => onDelete()}
+    <Wrapper color={lightenColor}>
+      <StatusBar backgroundColor={darkenColor} barStyle="light-content" />
+      <Header color={darkenColor}>
+        <Icon name="left" size={30} color="#fff" onPress={() => onSubmit()} />
+        <Icon name="delete" size={30} color="#fff" onPress={() => onDelete()} />
+      </Header>
+      <Category>
+        <DropdownGroup
+          title="tag"
+          zIndex={3000}
+          primaryColor={darkenColor}
+          secondaryColor="#fff"
+          data={categoryList}
+          selectedItem={category}
+          onChange={setCategory}
+        />
+        <DropdownGroup
+          title="person"
+          zIndex={1000}
+          primaryColor={darkenColor}
+          secondaryColor="#fff"
+          data={clientList}
+          selectedItem={client}
+          onChange={setClient}
+        />
+      </Category>
+      <ScrollView
+        contentContainerStyle={{ flex: 1, backgroundColor: darkenColor }}
+      >
+        <View style={{ flex: 1 }}>
+          <Input
+            multiline
+            numberOfLines={4}
+            autoCorrect={false}
+            onChangeText={setNote}
+            selectionColor={"#fff"}
+            style={{ textAlignVertical: "top" }}
+            value={note}
+            placeholderTextColor={"#fff"}
+            placeholder="Take a note..."
           />
-        </Header>
-        <Category>
-          <DropdownGroup
-            title="tag"
-            zIndex={3000}
-            primaryColor={darkenColor}
-            secondaryColor="#fff"
-            data={categoryList}
-            selectedItem={category}
-            onChange={setCategory}
-          />
-          <DropdownGroup
-            title="person"
-            zIndex={1000}
-            primaryColor={darkenColor}
-            secondaryColor="#fff"
-            data={clientList}
-            selectedItem={client}
-            onChange={setClient}
-          />
-        </Category>
-        <ScrollView
-          contentContainerStyle={{ flex: 1, backgroundColor: darkenColor }}
-        >
-          <View style={{ flex: 1 }}>
-            <Input
-              multiline
-              numberOfLines={4}
-              autoCorrect={false}
-              onChangeText={setNote}
-              selectionColor={"#fff"}
-              style={{ textAlignVertical: "top" }}
-              value={note}
-              placeholderTextColor={"#fff"}
-              placeholder="Take a note..."
-            />
-          </View>
-        </ScrollView>
-      </Wrapper>
-    </SafeAreaView>
+        </View>
+      </ScrollView>
+    </Wrapper>
   );
 };
 

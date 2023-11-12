@@ -6,9 +6,9 @@
  */
 
 import React from "react";
-import store from "./src/utils/store";
 import { Provider } from "react-redux";
 
+import store from "./src/utils/store";
 import Routes from "./src/nativation";
 
 function App(): JSX.Element {

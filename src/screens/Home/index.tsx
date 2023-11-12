@@ -26,17 +26,13 @@ const HomeScreen = ({ navigation }: PropsType) => {
     color: ThemeColor[index % ThemeColor.length],
   }));
 
-  console.log(newNotes);
-  StatusBar.setBackgroundColor("#fff");
-  StatusBar.setBarStyle("dark-content");
-
   useEffect(() => {
     dispatch(requestGetNotes());
   }, []);
 
   return (
     <Wrapper>
-      <SafeAreaView />
+      <StatusBar backgroundColor="#fff" barStyle="dark-content" />
       <Header>
         <SecondaryText>Simple Note</SecondaryText>
         <Button onPress={() => navigation.navigate(screenNames.Note, {})}>
@@ -65,6 +61,7 @@ const HomeScreen = ({ navigation }: PropsType) => {
 const Wrapper = styled.View`
   padding: 24px;
   flex: 1;
+  background-color: #fff;
 `;
 
 const Header = styled.View`
