@@ -3,13 +3,14 @@ import {
   StyleSheet,
   Text,
   Modal,
-  View,
-  Pressable,
   FlatList,
+  ScrollView,
+  View,
+  TouchableWithoutFeedback,
+  Pressable,
+  TouchableOpacity,
 } from "react-native";
 import styled from "styled-components/native";
-import DropDownPicker from "react-native-dropdown-picker";
-import Icon from "react-native-vector-icons/Entypo";
 
 interface DropdownType {
   isSelected: boolean;
@@ -54,18 +55,23 @@ const Dropdown = ({
           setModalVisible(!modalVisible);
         }}
       >
-        <ModalWrapper>
-          <FlatList
-            data={data}
-            renderItem={renderItem}
-            keyExtractor={(item) => item}
-            style={style.Modal}
-            contentContainerStyle={[
-              style.ModalContainer,
-              { backgroundColor: primaryColor },
-            ]}
-          />
-        </ModalWrapper>
+        <TouchableOpacity
+          activeOpacity={1}
+          onPressOut={() => {
+            setModalVisible(false);
+          }}
+          style={{ flex: 1 }}
+        >
+          <ScrollView directionalLockEnabled={true}>
+            <TouchableWithoutFeedback>
+              <FlatList
+                data={data}
+                renderItem={renderItem}
+                keyExtractor={(item) => item}
+              />
+            </TouchableWithoutFeedback>
+          </ScrollView>
+        </TouchableOpacity>
       </Modal>
       <MenuButton
         android_ripple={{ color: "#ffffff30", borderless: true }}
@@ -118,14 +124,12 @@ const Item = styled.View`
   font-size: 18px;
   width: 100%;
   color: #fff;
-  /* border: 1px solid #fff; */
 `;
 
 const style = StyleSheet.create({
   Modal: {
     width: "80%",
     flexGrow: 0,
-    flexDirection: "column-reverse",
   },
   ModalContainer: {
     borderRadius: 24,
