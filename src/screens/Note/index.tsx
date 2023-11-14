@@ -1,13 +1,7 @@
 import "react-native-get-random-values";
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import {
-  View,
-  SafeAreaView,
-  ScrollView,
-  BackHandler,
-  StatusBar,
-} from "react-native";
+import { View, ScrollView, BackHandler, StatusBar } from "react-native";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import styled from "styled-components/native";
 import { darken } from "polished";
@@ -128,12 +122,11 @@ const Wrapper = styled.View<ColorType>`
 `;
 
 const Header = styled.View<ColorType>`
-  padding: 0px 20px;
+  padding: 12px 20px;
   color: #fff;
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
-  height: 54px;
   background-color: ${(props) => props.color};
 `;
 

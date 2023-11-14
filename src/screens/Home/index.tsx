@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { SafeAreaView, FlatList, Text } from "react-native";
+import { FlatList, Text } from "react-native";
 import { StatusBar } from "react-native";
 import { useDispatch } from "react-redux";
 import styled from "styled-components/native";
@@ -18,8 +18,6 @@ const HomeScreen = ({ navigation }: PropsType) => {
   const dispatch = useDispatch();
   const notes = selectorNotes();
   const isLoading = selectorIsLoading();
-
-  useEffect(() => {}, []);
 
   const newNotes = notes.map((item, index) => ({
     ...item,

@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
-import { useColorScheme, StatusBar, View, Platform } from "react-native";
-import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { HomeScreen, NoteScreen } from "../screens";
