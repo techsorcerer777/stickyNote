@@ -9,7 +9,7 @@ import Icon from "react-native-vector-icons/AntDesign";
 import { v4 as uuidv4 } from "uuid";
 
 import { screenNames } from "../../constants/screen";
-import DropdownGroup from "../../components/DropdownGroup";
+import DropdownGroup from "../../components/MenuGroup";
 import categoryList from "../../constants/category.json";
 import clientList from "../../constants/client.json";
 import {
@@ -78,18 +78,14 @@ const NoteScreen = ({ route, navigation }: PropsType) => {
       <Category>
         <DropdownGroup
           title="tag"
-          zIndex={3000}
           primaryColor={darkenColor}
-          secondaryColor="#fff"
           data={categoryList}
           selectedItem={category}
           onChange={setCategory}
         />
         <DropdownGroup
           title="person"
-          zIndex={1000}
           primaryColor={darkenColor}
-          secondaryColor="#fff"
           data={clientList}
           selectedItem={client}
           onChange={setClient}
