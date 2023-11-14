@@ -1,8 +1,15 @@
 import React, { useState } from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, Text, FlatList } from "react-native";
 import styled from "styled-components/native";
 import DropDownPicker from "react-native-dropdown-picker";
 import Icon from "react-native-vector-icons/Entypo";
+import {
+  Menu,
+  MenuProvider,
+  MenuOptions,
+  MenuOption,
+  MenuTrigger,
+} from "react-native-popup-menu";
 
 interface DropdownType {
   isSelected: boolean;
@@ -30,38 +37,38 @@ const Dropdown = ({
 
   return (
     <Wrapper>
-      <DropDownPicker
-        open={open}
-        value={selectedItem}
-        items={items}
-        setOpen={setOpen}
-        setValue={onChange}
-        setItems={setItems}
-        ArrowUpIconComponent={() => (
-          <Icon name={"chevron-thin-up"} size={16} color={"#fff"} />
-        )}
-        ArrowDownIconComponent={() => (
-          <Icon name={"chevron-thin-down"} size={16} color={"#fff"} />
-        )}
-        showTickIcon={false}
-        zIndex={zIndex}
-        textStyle={styles.text}
-        zIndexInverse={4000 - zIndex}
-        style={{
-          ...styles.dropdown,
-          backgroundColor: primaryColor,
-        }}
-        dropDownContainerStyle={{
-          ...styles.dropdownContainer,
-          backgroundColor: primaryColor,
-        }}
-      />
+      <MenuProvider>
+        <Menu>
+          <MenuTrigger>
+            <MenuButton>
+              <ButtonText>Click Here!</ButtonText>
+            </MenuButton>
+          </MenuTrigger>
+          <MenuOptions>
+            <MenuOption onSelect={() => {}} text="Save" />
+            <MenuOption onSelect={() => {}}>
+              <Text style={{ color: "red" }}>Delete</Text>
+            </MenuOption>
+            <MenuOption onSelect={() => {}} disabled={true} text="Disabled" />
+          </MenuOptions>
+        </Menu>
+      </MenuProvider>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.View`
-  width: 80%;
+  width: 60%;
+`;
+
+const MenuButton = styled.View`
+  border-width: 2px;
+  border-radius: 24px;
+  border-color: #fff;
+`;
+
+const ButtonText = styled.Text`
+  color: #fff;
 `;
 
 const styles = StyleSheet.create({
@@ -82,6 +89,12 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 18,
     fontWeight: "500",
+  },
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    marginVertical: 200,
+    marginHorizontal: 100,
   },
 });
 
