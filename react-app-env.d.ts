@@ -10,6 +10,10 @@ interface ColorType {
   color: string;
 }
 
+interface PlatformType {
+  isIOS: boolean;
+}
+
 type RootStackParamList = {
   Note: {
     note?: string;

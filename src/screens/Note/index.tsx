@@ -1,7 +1,13 @@
 import "react-native-get-random-values";
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { View, ScrollView, BackHandler, StatusBar } from "react-native";
+import {
+  View,
+  ScrollView,
+  BackHandler,
+  StatusBar,
+  Platform,
+} from "react-native";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import styled from "styled-components/native";
 import { darken } from "polished";
@@ -71,7 +77,7 @@ const NoteScreen = ({ route, navigation }: PropsType) => {
   return (
     <Wrapper color={lightenColor}>
       <StatusBar backgroundColor={darkenColor} barStyle="light-content" />
-      <Header color={darkenColor}>
+      <Header color={darkenColor} isIOS={Platform.OS === "ios"}>
         <Icon name="left" size={30} color="#fff" onPress={() => onSubmit()} />
         <Icon name="delete" size={30} color="#fff" onPress={() => onDelete()} />
       </Header>
@@ -117,13 +123,14 @@ const Wrapper = styled.View<ColorType>`
   background-color: ${(props) => props.color};
 `;
 
-const Header = styled.View<ColorType>`
+const Header = styled.View<ColorType & PlatformType>`
   padding: 12px 20px;
   color: #fff;
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
   background-color: ${(props) => props.color};
+  margin-top: ${(props) => props.isIOS && "24px"};
 `;
 
 const Input = styled.TextInput`
