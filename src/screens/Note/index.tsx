@@ -130,7 +130,7 @@ const Header = styled.View<ColorType & PlatformType>`
   align-items: center;
   flex-direction: row;
   background-color: ${(props) => props.color};
-  margin-top: ${(props) => props.isIOS && "24px"};
+  padding-top: ${(props) => props.isIOS && "24px"};
 `;
 
 const Input = styled.TextInput`
